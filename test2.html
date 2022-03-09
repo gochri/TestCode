@@ -1,0 +1,35 @@
+<!--
+ * @Author: gochri(gochri@qq.com)
+ * @Date: 2022-03-05 20:03:36
+ * @FilePath: \FileReview\TestCode\test2.html
+ * // ===== Solution Code =====
+ * // ===== Test Case =====
+ * // ===== Driver Code =====
+-->
+<body>
+    <p id="js_show">show</p>
+    <button id="work">work</button>
+    <button id="interaction">other</button>
+</body>
+<script>
+    let showP = document.getElementById('js_show')
+    let workBtn = document.getElementById('work')
+    let interactionBtn = document.getElementById('interaction')
+    let COUNT = 100000000
+    let value = 0
+    function run(IdleDeadLine) {
+        while(COUNT>0 && IdleDeadLine.timeRemaining() > 1){
+            value = Math.random() * value
+            COUNT--
+            if(COUNT < 2){alert('done')}
+        }
+        requestIdleCallback(run)
+    }
+    workBtn.addEventListener('click',()=>{
+        showP.innerHTML = 'run'
+        requestIdleCallback(run)
+    })
+    interactionBtn.addEventListener('click',()=>{
+        alert("touch")
+    })
+</script>
